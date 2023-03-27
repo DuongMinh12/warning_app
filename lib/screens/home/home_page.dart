@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:warning_app/screens/screens.dart';
 
 import '../../constants/add_all.dart';
+import '../../widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
   static String routeName = 'homePage';
@@ -24,12 +25,12 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 65,
               margin: EdgeInsets.symmetric(vertical: 30),
-              child: ElevatedButton(onPressed: (){
-                Navigator.pushNamed(context, PaymentPage.routeName);
-              },
+              child: ElevatedButton(onPressed: () => showDialog(context: context, builder: (context){
+                return CustomAlertDialog(tittle: 'Khóa nạp tiền');
+              }),
                 child: Container(
                     alignment: Alignment.center,
-                    child: Text('Nạp Tiền', style: txt20,)),
+                    child: Text('Khóa Nạp Tiền', style: txt20,)),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: buttonpuple,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))
@@ -42,12 +43,12 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 65,
               margin: EdgeInsets.symmetric(vertical: 30),
-              child: ElevatedButton(onPressed: (){
-                Navigator.pushNamed(context, WithdrawMoneyPage.routeName);
-              },
+              child: ElevatedButton(onPressed: () =>showDialog(context: context, builder: (context){
+                return CustomAlertDialog(tittle: 'Khóa rút tiền');
+              }),
                 child: Container(
                     alignment: Alignment.center,
-                    child: Text('Rút Tiền', style: txt20,)),
+                    child: Text('Khóa Rút Tiền', style: txt20,)),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: buttonorange,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))
@@ -60,7 +61,9 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 65,
               margin: EdgeInsets.symmetric(vertical: 30),
-              child: ElevatedButton(onPressed: (){},
+              child: ElevatedButton(onPressed: () =>showDialog(context: context, builder: (context){
+                return CustomAlertDialog(tittle: 'Bảo trì');
+              }),
                 child: Container(
                     alignment: Alignment.center,
                     child: Text('Bảo Trì', style: txt20,)),
@@ -76,18 +79,20 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 65,
               margin: EdgeInsets.symmetric(vertical: 30),
-              child: ElevatedButton(onPressed: (){},
+              child: ElevatedButton(onPressed: () =>showDialog(context: context, builder: (context){
+                return CustomAlertDialog(tittle: 'Đóng hệ thống',);
+              }),
                 child: Container(
-                  alignment: Alignment.center,
-                    child: Text('Close System', style: txt20,)),
+                    alignment: Alignment.center,
+                    child: Text('Đóng Hệ Thống', style: txt20,)),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: buttongreen,
+                    backgroundColor: buttonblue,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))
                   // side: BorderSide(
                   //   color: Colors.green
                   // )
                 ),),
-            )
+            ),
           ],
         ),
       ),
