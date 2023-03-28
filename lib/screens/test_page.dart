@@ -1,92 +1,87 @@
-import 'package:flutter/material.dart';
-import 'package:warning_app/screens/home/home_page.dart';
-
-class TestPage extends StatefulWidget {
-  static String routeName ='testPage';
-  const TestPage({Key? key}) : super(key: key);
-
-  @override
-  State<TestPage> createState() => _TestPageState();
-}
-
-class _TestPageState extends State<TestPage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(onPressed: (){
-          showDialog(
-            barrierDismissible: false,
-              context: context,
-              builder: (_) => AlertDialog(
-                content: Text('bkbnjkn'),
-                actions: [
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      textStyle: Theme.of(context).textTheme.labelLarge,
-                    ),
-                    child: const Text('Cancel'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  TextButton(
-                      style: TextButton.styleFrom(
-                        textStyle: Theme.of(context).textTheme.labelLarge,
-                      ),
-                      child: const Text('Ok'),
-                      onPressed: () {
-                        showDialog(context: context, builder: (context){
-                          return AlertDialog(
-                            content: Text('test'),
-                            actions: [
-                              TextButton(onPressed: (){
-                                Navigator.pushNamed(context, HomePage.routeName);
-                              }, child: Text('ok'))
-                            ],
-                          );
-                        });
-                        // Navigator.of(context).pop();
-                      }
-                  )
-                ],
-
-              )
-          );
-        }, child: Text('bjkbjkb'),),
-      ),
-    );
-  }
-}
-
-
-// class _YourWidgetState extends State<YourWidget> {
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:warning_app/screens/home/home_page.dart';
 //
-//   AlertDialog alert = AlertDialog(content: Center(child:Text("Second Alert Dialog")));
+// class TestPage extends StatefulWidget {
+//   static String routeName ='testPage';
+//   // final String tittle;
+//   const TestPage({
+//     Key? key, //required this.tittle
+//   }) : super(key: key);
+//
+//   @override
+//   State<TestPage> createState() => _TestPageState();
+// }
+//
+// class _TestPageState extends State<TestPage> {
+//   final TextEditingController pass = TextEditingController();
+//
+//   @override
+//   void dispose(){
+//     pass.dispose();
+//     super.dispose();
+//   }
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     return RaisedButton(onPressed: (){
-//       showDialog(
-//           context: context,
-//           builder: (_) => AlertDialog(
-//             content: StatefulBuilder(
-//                 builder: (BuildContext context, StateSetter setState){
-//                   return Column(
-//                     children: <Widget>[
-//                       RaisedButton( onPressed: (){
-//                         showDialog(context: context, builder: (_) => alert);
-//                       }),
-//                       RaisedButton(onPressed: (){
-//                         showDialog(context: context, builder: (_) => alert);
-//                       }),
-//                     ],
-//                   );
-//                 }
+//     return AlertDialog(
+//       actionsAlignment: MainAxisAlignment.spaceBetween,
+//       title: Text('Password'),
+//       content: TextFormField(
+//         controller: pass,
+//         // validator: (value){
+//         //   if (value == null || value.isEmpty) {
+//         //     return 'Please enter some text';
+//         //   }
+//         //   return null;
+//         // },
+//         decoration: InputDecoration(
+//             hintText: 'Nhập password',
+//             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+//       ),
+//       actions: [
+//         TextButton(
+//           style: TextButton.styleFrom(
+//             textStyle: Theme.of(context).textTheme.labelLarge,
+//           ),
+//           child: const Text('Cancel'),
+//           onPressed: () {
+//             Navigator.pop(context);
+//           },
+//         ),
+//         TextButton(
+//             style: TextButton.styleFrom(
+//               textStyle: Theme.of(context).textTheme.labelLarge,
 //             ),
-//           )
-//       );
-//     });
+//             child: const Text('Ok'),
+//             onPressed: () {
+//               if(pass.text=='1234'){
+//                 showDialog(context: context,
+//                     builder: (context){
+//                       return AlertDialog(
+//                         actionsAlignment: MainAxisAlignment.spaceBetween,
+//                         title: Text('Warning!! Bạn đang '),
+//                         content: Text('Bạn có chắc rằng muốn  không?'),
+//                         actions: [
+//                           TextButton(onPressed: (){
+//                             Navigator.pushNamed(context, HomePage.routeName);
+//                           }, child: Text('Cancel')),
+//                           TextButton(onPressed: (){
+//                             Navigator.pushNamed(context, HomePage.routeName);
+//                           }, child: Text('Ok'))
+//                         ],
+//                       );
+//                     });
+//               } else{}
+//             }
+//         )
+//       ],
+//     );
 //   }
+//
+// // String? errorMess(String? err){
+// //   if(pass.text!='1234'){
+// //     return 'wrong';
+// //   }
+// // }
 // }
