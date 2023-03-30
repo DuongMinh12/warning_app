@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:warning_app/constants/add_all.dart';
 import 'package:warning_app/screens/home/home_page.dart';
+import 'package:warning_app/widgets/widgets.dart';
 
 class CustomAlertDialog extends StatefulWidget {
   final String tittle;
@@ -14,14 +16,35 @@ class CustomAlertDialog extends StatefulWidget {
 }
 
 class _CustomAlertDialogState extends State<CustomAlertDialog> {
+
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   loadDataa();
+  // }
+  //
+  // void loadDataa() async {
+  //   SharedPreferences pref = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     onPower = pref.getBool('save');
+  //   });
+  // }
+  bool onPower = false;
   final TextEditingController pass = TextEditingController();
   @override
   void dispose() {
     pass.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
+    @override
+    void setData() async{
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      pref.setBool('save', onPower);
+    }
+    
     return AlertDialog(
         actionsAlignment: MainAxisAlignment.spaceBetween,
         title: Text('Password'),
@@ -57,14 +80,15 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
                           actions: [
                             TextButton(
                                 onPressed: () {
-                                  // control = false;
                                   Navigator.pushNamed(context, HomePage.routeName);
                                 },
                                 child: Text('Cancel')),
                             TextButton(
-                                onPressed: () {
-                                  // control = true;
-                                  Navigator.pushNamed(context, HomePage.routeName);
+                                onPressed: (){
+                                  onPower = true;
+                                  setData();
+                                  Navigator.pop(context);
+                                  //saveChange();
                                 },
                                 child: Text('Ok'))
                           ],
@@ -74,38 +98,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
                 if (pass.text!='1234' && pass.text.isNotEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                              // alignment: Alignment.center,
-                              height: 50,
-                              width: double.infinity,
-                              padding: EdgeInsets.all(16),
-                              decoration: BoxDecoration(color: Color(0xFFC72C41), borderRadius: BorderRadius.circular(20)),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                child: Text('Mật khẩu bạn nhập không đúng'),
-                              )),
-                          Positioned(
-                              child: SvgPicture.asset(
-                            close,
-                            height: 30,
-                            width: 30,
-                          ),
-                          top: -10,
-                          left: -10,),
-                          Positioned(
-                            right: 0,
-                            top: 0,
-                            child: SvgPicture.asset(
-                              bearteddy,
-                              height: 60,
-                              width: 50,
-                            ),
-                          ),
-                        ],
-                      ),
+                      content: StackWidgetRed(),
                       duration: Duration(seconds: 2),
                       behavior: SnackBarBehavior.floating,
                       backgroundColor: Colors.transparent,
@@ -116,34 +109,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
                 else{
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              padding: EdgeInsets.all(16),
-                              decoration: BoxDecoration(color: Colors.orange, borderRadius: BorderRadius.circular(20)),
-                              child: Text('Bạn chưa nhập mật khẩu')),
-                          Positioned(
-                            child: SvgPicture.asset(
-                              exclamation,
-                              height: 30,
-                              width: 30,
-                            ),
-                            top: -10,
-                            left: -10,),
-                          Positioned(
-                            right: 0,
-                            top: 0,
-                            child: SvgPicture.asset(
-                              bearteddy,
-                              height: 60,
-                              width: 50,
-                            ),
-                          ),
-                        ],
-                      ),
+                      content: StackWidgetYellow(),
                       duration: Duration(seconds: 2),
                       behavior: SnackBarBehavior.floating,
                       backgroundColor: Colors.transparent,
@@ -155,10 +121,4 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
         ],
       );
   }
-
-  // String? errorMess(String? err){
-  //   if(pass.text!='1234'){
-  //     return 'wrong';
-  //   }
-  // }
 }

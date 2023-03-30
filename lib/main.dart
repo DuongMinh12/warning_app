@@ -4,8 +4,9 @@ import 'package:warning_app/routes.dart';
 import 'screens/screens.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
-    initialRoute: SplashPage.routeName,
+    initialRoute: SignUpPage.routeName,
     routes: routes,
     debugShowCheckedModeBanner: false,
     theme: ThemeData(),

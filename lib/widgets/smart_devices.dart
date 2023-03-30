@@ -2,10 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:warning_app/constants/add_all.dart';
 import 'package:warning_app/widgets/widgets.dart';
 
-class SmartDevicesWidget extends StatelessWidget {
+class SmartDevicesWidget extends StatefulWidget {
   SmartDevicesWidget({
     Key? key,
     required this.devicesname,
@@ -20,11 +21,21 @@ class SmartDevicesWidget extends StatelessWidget {
   void Function(bool)? onChanged;
 
   @override
+  State<SmartDevicesWidget> createState() => _SmartDevicesWidgetState();
+}
+
+class _SmartDevicesWidgetState extends State<SmartDevicesWidget> {
+  // @override
+  // _savebool() async{
+  //   SharedPreferences pref = await SharedPreferences.getInstance();
+  //   await pref.setBool('save', value);
+  // }
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        decoration: BoxDecoration(color: (power==false)? Colors.blue[100]:Colors.red, borderRadius: BorderRadius.circular(12)),
+        decoration: BoxDecoration(color: (widget.power==false)? Colors.blue[100]:Colors.red, borderRadius: BorderRadius.circular(12)),
         child: Container(
           margin: EdgeInsets.all(16),
           child: Column(
@@ -32,7 +43,7 @@ class SmartDevicesWidget extends StatelessWidget {
             children: [
               Container(
                 child: Image.asset(
-                  devicesicon, color: (power==false)? Colors.black:Colors.white,
+                  widget.devicesicon, color: (widget.power==false)? Colors.black:Colors.white,
                 ),
                 height: 65,
                 width: 65,
@@ -40,16 +51,16 @@ class SmartDevicesWidget extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Text(devicesname,
+                    child: Text(widget.devicesname,
                         style: txt16!.copyWith(
-                          color: (power==false)? Colors.black:Colors.white,
+                          color: (widget.power==false)? Colors.black:Colors.white,
                         )),
                   ),
                   Transform.rotate(
                       angle: pi / 2,
                       child: CupertinoSwitch(
-                        value: power,
-                        onChanged: onChanged,
+                        value: widget.power,
+                        onChanged: widget.onChanged,
                       )),
                 ],
               ),

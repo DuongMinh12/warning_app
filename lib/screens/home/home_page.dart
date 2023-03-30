@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:warning_app/screens/screens.dart';
 
 import '../../constants/add_all.dart';
@@ -15,6 +16,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   loadDataa();
+  // }
+  //
+  // void loadDataa() async {
+  //   SharedPreferences pref = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     onPower = pref.getBool('save')??false;
+  //   });
+  // }
+  // bool? onPower;
+
   List datahome=[
     ['Khóa Nạp Tiền', moneyicon, false],
     ['Khóa Rút Tiền', cashmoney, false],
@@ -23,95 +38,29 @@ class _HomePageState extends State<HomePage> {
   ];
 
   void powerSwithChange(bool value, int index) async{
-    final TextEditingController txt = TextEditingController();
-
-    // if(value==true){
-    //   await showDialog(context: context, builder: (context){
-    //     return AlertDialog(
-    //       actionsAlignment: MainAxisAlignment.spaceBetween,
-    //       title: Text('Password'),
-    //       content: TextFormField(
-    //         // controller: txt,
-    //         controller: txt,
-    //         decoration: InputDecoration(hintText: 'Nhập password', border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
-    //       ),
-    //       actions: [
-    //         TextButton(onPressed: (){
-    //           value = false;
-    //           Navigator.pop(context);
-    //         }, child: Text('Cancel')),
-    //         TextButton(
-    //             style: TextButton.styleFrom(
-    //               textStyle: Theme.of(context).textTheme.labelLarge,
-    //             ),
-    //             child: const Text('Ok'),
-    //             onPressed: () {
-    //               if (txt.text == '1234') {
-    //                 showDialog(
-    //                     context: context,
-    //                     builder: (context) {
-    //                       return AlertDialog(
-    //                         actionsAlignment: MainAxisAlignment.spaceBetween,
-    //                         title: Text('Warning!! Bạn đang ${datahome[index][0]}'),
-    //                         content: Text('Bạn có chắc rằng muốn ${datahome[index][0]} không?'),
-    //                         actions: [
-    //                           TextButton(
-    //                               onPressed: () {
-    //                                 value = false;
-    //                                 Navigator.pushNamed(context, HomePage.routeName);
-    //                               },
-    //                               child: Text('Cancel')),
-    //                           TextButton(
-    //                               onPressed: () {
-    //                                 Navigator.pushNamed(context, HomePage.routeName);
-    //                                 value = true;
-    //                               },
-    //                               child: Text('Ok'))
-    //                         ],
-    //                       );
-    //                     });
-    //               }
-    //               if (txt.text!='1234' && txt.text.isNotEmpty) {
-    //                 ScaffoldMessenger.of(context).showSnackBar(
-    //                   SnackBar(
-    //                     content: StackWidgetRed(),
-    //                     duration: Duration(seconds: 2),
-    //                     behavior: SnackBarBehavior.floating,
-    //                     backgroundColor: Colors.transparent,
-    //                     elevation: 0,
-    //                   ),
-    //                 );
-    //               }
-    //               if(txt.text.isEmpty){
-    //                 ScaffoldMessenger.of(context).showSnackBar(
-    //                   SnackBar(
-    //                     content: StackWidgetYellow(),
-    //                     duration: Duration(seconds: 2),
-    //                     behavior: SnackBarBehavior.floating,
-    //                     backgroundColor: Colors.transparent,
-    //                     elevation: 0,
-    //                   ),
-    //                 );
-    //               }
-    //             })
-    //       ],
-    //     );
-    //   });
-    // }
-    if(value==true){
-      await showDialog(context: context, builder: (context){
-        return AlertDialog(
-          title: Text(datahome[index][0]),
-          content: Text('Bạn có chắc chắn không?'),
-          actions: [
-            TextButton(onPressed: (){value =false;
-              Navigator.pop(context);}, child: Text('Cancle')),
-            TextButton(onPressed: (){value = true; Navigator.pop(context);}, child: Text('Ok')),
-          ],
-        );
-      });
-    }
-    setState(() {
+   if(value ==true){
+     return showDialog(context: context, builder: (context){
+       return AlertDialog(
+         title: Text('close?'),
+         content: Text('close'),
+         actions: [
+           TextButton(onPressed: (){
+             setState((){
+               value = false;
+               datahome[index][2]=value;
+             });
+             Navigator.pop(context);}, child: Text('Cancel')),
+           TextButton(onPressed: (){
+             setState((){
+               value = true;
+               datahome[index][2]=value;
+             });
+             Navigator.pop(context);}, child: Text('OK')),
+         ],
+       );
+     });
+   }
+    setState((){
       datahome[index][2]=value;
     });
   }
@@ -119,40 +68,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   backgroundColor: kMainColor,
-      //   title: Text(
-      //     'Blue Bear',
-      //     style: titlestyle,
-      //   ),
-      // ),
-      // body: Column(
-      //   children: [
-      //     Stack(
-      //       children: [
-      //         // Container(
-      //         //   height: 230,
-      //         //   width: double.infinity,
-      //         //   child: Image.asset(bluebear, fit: BoxFit.cover,),
-      //         // ),
-      //         Positioned(
-      //           child: Container(
-      //             decoration: BoxDecoration(color: kMainColor, borderRadius: BorderRadius.only(topRight: Radius.circular(999))),
-      //             height: 180,
-      //             width: 240,
-      //           ),
-      //         ),
-      //         Positioned(
-      //           bottom: -20,
-      //             child: Container(
-      //           height: 200,
-      //           child: Lottie.asset(catWork),
-      //         ))
-      //       ],
-      //     ),
-      //   ],
-      // ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -162,7 +77,9 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, LogInPage.routeName);
+                    },
                     icon: Icon(
                       Icons.menu,
                       size: 30,
@@ -202,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   height: 400,
                   child: GridView.builder(
-                    itemCount: 4,
+                    itemCount: datahome.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 1/1.1),
                       itemBuilder: (context, indext){
                         return SmartDevicesWidget(
