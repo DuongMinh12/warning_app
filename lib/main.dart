@@ -6,10 +6,10 @@ import 'screens/screens.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
-    initialRoute: SignUpPage.routeName,
+    initialRoute: SplashPage.routeName,
     routes: routes,
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(),
+    //theme: ThemeData(),
   ));
 }
 

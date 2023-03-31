@@ -11,3 +11,9 @@ class CloseSystemInitial extends CloseSystemState {
   @override
   List<Object?> get props => [];
 }
+
+class CloseSystemChanged extends CloseSystemState {
+
+  @override
+  List<Object?> get props => [];
+}

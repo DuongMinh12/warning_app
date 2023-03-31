@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   //   });
   // }
   // bool? onPower;
+  TextEditingController txt = TextEditingController();
 
   List datahome=[
     ['Khóa Nạp Tiền', moneyicon, false],
@@ -41,8 +42,11 @@ class _HomePageState extends State<HomePage> {
    if(value ==true){
      return showDialog(context: context, builder: (context){
        return AlertDialog(
-         title: Text('close?'),
-         content: Text('close'),
+         title: Text('Nhập Mật Khẩu'),
+         content: TextFormField(decoration: InputDecoration(
+           hintText: 'Nhập mật khẩu'
+         ),
+         controller: txt,),
          actions: [
            TextButton(onPressed: (){
              setState((){
@@ -51,11 +55,26 @@ class _HomePageState extends State<HomePage> {
              });
              Navigator.pop(context);}, child: Text('Cancel')),
            TextButton(onPressed: (){
-             setState((){
-               value = true;
-               datahome[index][2]=value;
-             });
-             Navigator.pop(context);}, child: Text('OK')),
+             if(txt.text=='admin'){
+               Navigator.pop(context);
+               showDialog(context: context, builder: (context){
+                 return AlertDialog(
+                   title: Text('Warning'),
+                   content: Text('Bạn có chắc rằng muốn tắt chương trình?'),
+                   actions: [
+                     TextButton(onPressed: (){Navigator.pop(context);}, child: Text('cancel')),
+                     TextButton(onPressed: (){
+                       Navigator.pop(context);
+                       setState((){
+                         value = true;
+                         datahome[index][2]=value;
+                       });
+                     }, child: Text('ok'))
+                   ],
+                 );
+               });
+             } else{ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Nhập lại mật khẩu')));}
+             }, child: Text('OK')),
          ],
        );
      });
@@ -85,7 +104,9 @@ class _HomePageState extends State<HomePage> {
                       size: 30,
                     )),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, TestPage.routeName);
+                    },
                     icon: Icon(
                       Icons.person,
                       size: 30,

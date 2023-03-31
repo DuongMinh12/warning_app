@@ -21,6 +21,8 @@ final String light2 = link + 'light-2.png';
 final String facebookicon = link + 'facebook.png';
 final String gmailicon = link + 'gmail.png';
 final String riveAnimation = link + 'rivAnimation.riv';
+final String alerticon = link + '8750-alert.json';
+final String warningiconred = link + '62623-warning.json';
 
 
 
