@@ -24,6 +24,10 @@ final String riveAnimation = link + 'rivAnimation.riv';
 final String alerticon = link + '8750-alert.json';
 final String warningiconred = link + '62623-warning.json';
 
+final String linkrive = 'assets/images/rive_icon/';
+
+final String iconrive = linkrive + 'icons.riv';
+
 
 
 

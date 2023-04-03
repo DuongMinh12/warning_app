@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:warning_app/models/models.dart';
+import 'package:warning_app/screens/screens.dart';
 
 import '../constants/add_all.dart';
 
 class CustomAlertDialogChild extends StatelessWidget {
-  const CustomAlertDialogChild({Key? key,}) : super(key: key);
+   const CustomAlertDialogChild({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    //bool testchange;
+    ChangeStateModel changeStateModel =  ChangeStateModel();
     return Dialog(
       backgroundColor: Colors.transparent,
       shape: RoundedRectangleBorder(
@@ -41,6 +45,8 @@ class CustomAlertDialogChild extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.pop(context);
+                            changeStateModel.changestatebutton = false;
+                            //testchange = false;
                           },
                           child: Text('Cancel'),
                           style: ElevatedButton.styleFrom(
@@ -50,12 +56,15 @@ class CustomAlertDialogChild extends StatelessWidget {
                     Container(
                         width: 100,
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: (){
                             Navigator.pop(context);
+                            //testchange = true;
+                            changeStateModel.changestatebutton = true;
                           },
                           child: Text('Ok'),
                           style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            backgroundColor: Colors.red
                           ),
                         )),
                   ],

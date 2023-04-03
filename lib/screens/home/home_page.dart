@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:warning_app/models/models.dart';
 import 'package:warning_app/screens/screens.dart';
 
 import '../../constants/add_all.dart';
@@ -16,19 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // @override
-  // void initState(){
-  //   super.initState();
-  //   loadDataa();
-  // }
-  //
-  // void loadDataa() async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     onPower = pref.getBool('save')??false;
-  //   });
-  // }
-  // bool? onPower;
+  ChangeStateModel changeStateModel = ChangeStateModel();
   TextEditingController txt = TextEditingController();
 
   List datahome=[
@@ -87,6 +77,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -96,16 +87,22 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, LogInPage.routeName);
+                    onPressed:(){
+                      Navigator.pushNamed(context, SideMenuPage.routeName);
                     },
+                    // onPressed: () {
+                    //   FirebaseAuth.instance.signOut().then((value){
+                    //     print('signed out');
+                    //     Navigator.pushNamed(context, LogInPage.routeName);
+                    //   });
+                    // },
                     icon: Icon(
                       Icons.menu,
                       size: 30,
                     )),
                 IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, TestPage.routeName);
+                      Navigator.pushNamed(context, ProfilePage.routeName);
                     },
                     icon: Icon(
                       Icons.person,
@@ -138,8 +135,10 @@ class _HomePageState extends State<HomePage> {
                   style: txt18,
                 ),
                 Container(
-                  height: 400,
+                  height: 450,
                   child: GridView.builder(
+                    //primary: false,
+                    //physics: NeverScrollableScrollPhysics(),
                     itemCount: datahome.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 1/1.1),
                       itemBuilder: (context, indext){

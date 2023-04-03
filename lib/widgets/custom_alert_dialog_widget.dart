@@ -83,7 +83,8 @@ class CustomAlertDialog extends StatelessWidget {
                             },
                             child: Text('Ok'),
                             style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                              backgroundColor: Colors.red
                             ),
                           )),
                     ],

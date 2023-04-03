@@ -6,14 +6,15 @@ abstract class CloseSystemState extends Equatable{
 }
 
 class CloseSystemInitial extends CloseSystemState {
-
+const CloseSystemInitial();
 
   @override
   List<Object?> get props => [];
 }
 
 class CloseSystemChanged extends CloseSystemState {
-
+  final ChangeStateModel changeStateModel;
+  const CloseSystemChanged (this.changeStateModel);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [changeStateModel];
 }

@@ -9,8 +9,16 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('vhjbhh'),
       ),
-      body: Center(
-        child: Text('Profile screen'),
+      body: Container(
+        alignment: Alignment.center,
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(),
+            Text('Profile screen'),
+            Text('Profile screen',),
+          ],
+        ),
       ),
     );
   }

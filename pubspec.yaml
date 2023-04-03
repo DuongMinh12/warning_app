@@ -46,6 +46,9 @@ dependencies:
   path_provider: ^2.0.14
   simple_animations: ^1.3.3
   rive: ^0.10.3
+  cloud_firestore: ^4.5.0
+  firebase_core: ^2.9.0
+  firebase_auth: ^4.4.0
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +75,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/images/
+     - assets/images/rive_icon/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
