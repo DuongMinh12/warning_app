@@ -7,3 +7,4 @@ export 'login/login_screen.dart';
 export 'register/sign_up_screen.dart';
 export 'profile/profile_screen.dart';
 export 'side_menu/side_menu_screen.dart';
+export 'home/components/body_home_screen.dart';

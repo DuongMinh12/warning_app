@@ -13,7 +13,7 @@ class BottomNaviga extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(onPressed: (){
-            Navigator.pushNamed(context, HomePage.routeName);
+            Navigator.pushNamed(context, BodyHomePage.routeName);
           }, icon: Icon(Icons.home, color: Colors.white,)),
           IconButton(onPressed: (){}, icon: Icon(Icons.person, color: Colors.white)),
           IconButton(onPressed: (){}, icon: Icon(Icons.question_mark, color: Colors.white)),

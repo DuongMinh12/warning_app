@@ -127,7 +127,7 @@ class SignUpPage extends StatelessWidget {
                               if (_key.currentState!.validate() && _enterpasswordController.text == _passwordController.text) {
                                 FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailController.text, password: _passwordController.text).then((value) {
                                   print('Create new account');
-                                  Navigator.pushNamed(context, HomePage.routeName);
+                                  Navigator.pushNamed(context, BodyHomePage.routeName);
                                 }).onError((error, stackTrace) {
                                   print('Error ${error.toString()}');
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${error.toString()}')));

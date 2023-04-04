@@ -11,6 +11,7 @@ final Map<String, WidgetBuilder> routes = {
   ProfilePage.routeName: (context) => ProfilePage(),
   TestPage.routeName: (context) => TestPage(),
   SideMenuPage.routeName: (context) => SideMenuPage(),
+  BodyHomePage.routeName: (context) => BodyHomePage(),
   // PaymentPage.routeName: (context) => PaymentPage(),
   // WithdrawMoneyPage.routeName: (context) => WithdrawMoneyPage(),
 };
