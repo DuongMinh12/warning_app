@@ -59,12 +59,6 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:warning_app/screens/profile/profile_screen.dart';
-import 'package:warning_app/screens/side_menu/side_menu_screen.dart';
-
-import '../../../constants/add_all.dart';
-import '../../../models/models.dart';
-import '../../../widgets/widgets.dart';
  class TestPage extends StatefulWidget {
    const TestPage({Key? key}) : super(key: key);
  static String routeName = 'testPage';
@@ -75,8 +69,10 @@ import '../../../widgets/widgets.dart';
  class _TestPageState extends State<TestPage> {
    @override
    Widget build(BuildContext context) {
-     return Container(
-       color: Colors.blue,
+     return Scaffold(
+       body: Container(
+         color: Colors.blue,
+       ),
      );
    }
  }

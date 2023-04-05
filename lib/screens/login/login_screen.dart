@@ -17,11 +17,11 @@ class _LogInPageState extends State<LogInPage> {
   var passwordController = TextEditingController();
   final _key = GlobalKey<FormState>();
 
-  late SMITrigger failTrigger, successTrigger;
-  late SMIBool isChecking, isHandsUp;
-  late SMINumber looknum;
+   SMITrigger? failTrigger, successTrigger;
+   SMIBool? isChecking, isHandsUp;
+   SMINumber? looknum;
   Artboard? artboard;
-  late StateMachineController stateMachineController;
+  StateMachineController? stateMachineController;
   bool isvalue = false;
 
 
@@ -177,29 +177,29 @@ class _LogInPageState extends State<LogInPage> {
   }
 
   checking(){
-    isHandsUp.change(false);
-    isChecking.change(true);
-    looknum.change(0);
+    isHandsUp!.change(false);
+    isChecking!.change(true);
+    looknum!.change(0);
   }
 
   moveEyes(value){
-    looknum.change(value.length.toDouble());
+    looknum!.change(value.length.toDouble());
   }
 
   handsUp(){
-    isHandsUp.change(true);
-    isChecking.change(false);
+    isHandsUp!.change(true);
+    isChecking!.change(false);
   }
 
   login() async{
-    isHandsUp.change(false);
-    isChecking.change(false);
+    isHandsUp!.change(false);
+    isChecking!.change(false);
     if(_key.currentState!.validate()){
       FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).then((value){
-        successTrigger.fire();
+        successTrigger!.fire();
         Future.delayed(Duration(seconds: 2), () => Navigator.pushNamed(context, BodyHomePage.routeName));
       }).onError((error, stackTrace){
-        failTrigger.fire();
+        failTrigger!.fire();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${error.toString()}')));
       });
     }

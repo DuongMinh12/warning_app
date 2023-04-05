@@ -5,6 +5,8 @@ import 'package:warning_app/constants/add_all.dart';
 import 'package:lottie/lottie.dart';
 import 'package:warning_app/screens/screens.dart';
 
+import '../home/components/drawer_menu.dart';
+
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
   static String routeName = 'splashPage';
@@ -15,7 +17,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 4), ()=>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>BodyHomePage())));
+    Timer(Duration(seconds: 4), ()=>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> DrawerMenu())));
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),

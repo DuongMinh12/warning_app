@@ -8,7 +8,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MaterialApp(
-    initialRoute: HomePage.routeName,
+    initialRoute: SplashPage.routeName,
     routes: routes,
     debugShowCheckedModeBanner: false,
     //theme: ThemeData(),

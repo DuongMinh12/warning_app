@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
-import '../../../constants/add_all.dart';
-import '../../../models/models.dart';
-import '../../../widgets/widgets.dart';
-import '../../screens.dart';
+import '../../constants/add_all.dart';
+import '../../models/models.dart';
+import '../../widgets/widgets.dart';
+import '../screens.dart';
+import 'components/drawer_menu.dart';
 
 class BodyHomePage extends StatefulWidget {
   const BodyHomePage({Key? key}) : super(key: key);
@@ -26,6 +29,17 @@ class _BodyHomePageState extends State<BodyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(onPressed: (){
+          ZoomDrawer.of(context)!.toggle();
+        }, icon: Icon(Icons.menu, color: Colors.black,),),
+        actions: [
+          IconButton(onPressed: (){Navigator.pushNamed(context, ProfilePage.routeName);}, icon: Icon(CupertinoIcons.bell, color: Colors.black,))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Container(
           //padding: EdgeInsets.only(top: 0),
@@ -34,37 +48,7 @@ class _BodyHomePageState extends State<BodyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8, top: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                          onPressed:(){
-                            Navigator.pushNamed(context, SideMenuPage.routeName);
-                          },
-                          // onPressed: () {
-                          //   FirebaseAuth.instance.signOut().then((value){
-                          //     print('signed out');
-                          //     Navigator.pushNamed(context, LogInPage.routeName);
-                          //   });
-                          // },
-                          icon: Icon(
-                            Icons.menu,
-                            size: 30,
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, ProfilePage.routeName);
-                          },
-                          icon: Icon(
-                            Icons.person,
-                            size: 30,
-                          )),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -86,6 +70,7 @@ class _BodyHomePageState extends State<BodyHomePage> {
                         'System Management',
                         style: txt18,
                       ),
+                      SizedBox(height: 15,),
                       Container(
                         height: 450,
                         child: GridView.builder(
