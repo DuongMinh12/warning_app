@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:warning_app/animation/fade_animation.dart';
 import 'package:warning_app/constants/add_all.dart';
+import 'package:warning_app/controllers/signup_controller.dart';
 import 'package:warning_app/screens/screens.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -12,6 +13,7 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _usernameController = TextEditingController();
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();
     TextEditingController _enterpasswordController = TextEditingController();
@@ -101,6 +103,10 @@ class SignUpPage extends StatelessWidget {
                                     SizedBox(
                                       height: 10,
                                     ),
+                                    reusabletextformfield(_usernameController, 'User Name', validatorCheckUserName, false),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     reusabletextformfield(_emailController, 'Email', validatorCheckUserName, false),
                                     SizedBox(
                                       height: 10,
@@ -125,13 +131,7 @@ class SignUpPage extends StatelessWidget {
                             onTap: () {
                               //myFocusNode.requestFocus();
                               if (_key.currentState!.validate() && _enterpasswordController.text == _passwordController.text) {
-                                FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailController.text, password: _passwordController.text).then((value) {
-                                  print('Create new account');
-                                  Navigator.pushNamed(context, BodyHomePage.routeName);
-                                }).onError((error, stackTrace) {
-                                  print('Error ${error.toString()}');
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${error.toString()}')));
-                                });
+                                SignUp(context,_emailController.text, _passwordController.text, _usernameController.text);
                               }
                             },
                             child: Container(

@@ -197,7 +197,7 @@ class _LogInPageState extends State<LogInPage> {
     if(_key.currentState!.validate()){
       FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).then((value){
         successTrigger!.fire();
-        Future.delayed(Duration(seconds: 2), () => Navigator.pushNamed(context, BodyHomePage.routeName));
+        Future.delayed(Duration(seconds: 2), () => Navigator.pushNamed(context, DrawerMenu.routeName));
       }).onError((error, stackTrace){
         failTrigger!.fire();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${error.toString()}')));

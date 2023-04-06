@@ -5,7 +5,7 @@ import 'package:warning_app/constants/add_all.dart';
 import 'package:lottie/lottie.dart';
 import 'package:warning_app/screens/screens.dart';
 
-import '../home/components/drawer_menu.dart';
+import '../home/components/drawer_menu_main_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);

@@ -12,6 +12,6 @@ class MenuItems{
   static MenuItem help = MenuItem('Help', Icons.chat_outlined);
 
   static List<MenuItem> all = [
-    home, help, profile
+    home, profile, help
   ];
 }

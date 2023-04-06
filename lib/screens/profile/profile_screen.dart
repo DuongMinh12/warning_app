@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:warning_app/constants/add_all.dart';
 
 import '../screens.dart';
@@ -13,17 +14,21 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(onPressed: (){Navigator.pop(context);},icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black,),),
+        leading: IconButton(onPressed: (){
+          ZoomDrawer.of(context)!.open();
+          // ZoomDrawer.of(context)!.toggle();
+          //Navigator.pushNamed(context, BodyHomePage.routeName);
+          },icon: Icon(Icons.menu, color: Colors.black,),),
         backgroundColor: Colors.white,elevation: 0,
         title: Text('Profile', style: txt20!.copyWith(fontWeight: FontWeight.w700),),
-        actions: [
-          IconButton(onPressed: (){
-            FirebaseAuth.instance.signOut().then((value){
-              print('signed out');
-              Navigator.pushNamed(context, LogInPage.routeName);
-            });
-          }, icon: Icon(Icons.logout, color: Colors.black,))
-        ],
+        // actions: [
+        //   IconButton(onPressed: (){
+        //     FirebaseAuth.instance.signOut().then((value){
+        //       print('signed out');
+        //       Navigator.pushNamed(context, LogInPage.routeName);
+        //     });
+        //   }, icon: Icon(Icons.logout, color: Colors.black,))
+        // ],
       ),
       body: Container(
         alignment: Alignment.center,

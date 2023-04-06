@@ -8,7 +8,8 @@ final Map<String, WidgetBuilder> routes = {
   SignUpPage.routeName: (context) => SignUpPage(),
   ProfilePage.routeName: (context) => ProfilePage(),
   TestPage.routeName: (context) => TestPage(),
-  BodyHomePage.routeName: (context) => BodyHomePage(),
+  DrawerMenu.routeName: (context) => DrawerMenu(),
+
   // PaymentPage.routeName: (context) => PaymentPage(),
   // WithdrawMoneyPage.routeName: (context) => WithdrawMoneyPage(),
 };
