@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:warning_app/constants/add_all.dart';
+import 'package:warning_app/models/models.dart';
 
 import '../screens.dart';
 import 'components/component_profile_page.dart';
@@ -42,7 +43,7 @@ class ProfilePage extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Colors.blue,
                       radius: 50,
-                      backgroundImage: NetworkImage('https://cdn.myanimelist.net/images/characters/2/477265.jpg'),
+                      backgroundImage: NetworkImage(Customer.user.imageUrl),
                     ),
                     Positioned(
                       right: 5,
@@ -59,7 +60,7 @@ class ProfilePage extends StatelessWidget {
                   ],
                 )),
             Text(
-              'Cale Henituse',
+              Customer.user.name,
               style: txt18!.copyWith(fontWeight: FontWeight.w700),
             ),
             SizedBox(height: 3,),
@@ -68,9 +69,9 @@ class ProfilePage extends StatelessWidget {
               style: txt16!.copyWith(fontWeight: FontWeight.normal),
             ),
             SizedBox(height: 10,),
-            buildContainerProfile('User Name: ', 'Cale Henituse', Icon(Icons.perm_contact_cal, size: 25,)),
-            buildContainerProfile('Email: ', 'CaleCrossman@gmail.com', Icon(Icons.mail_outline, size: 25,)),
-            buildContainerProfile('Phone: ', '01234567890', Icon(Icons.phone, size: 25,)),
+            buildProfile('User Name: ', Customer.user.name, Icon(Icons.perm_contact_cal, size: 25, color: Colors.black,)),
+            buildProfile('Email: ', Customer.user.email, Icon(Icons.mail_outline, size: 25,color: Colors.black)),
+            buildProfile('Phone: ', '${Customer.user.phone}', Icon(Icons.phone, size: 25,color: Colors.black)),
             SizedBox(height: 30,),
             Container(
               //alignment: Alignment.center,

@@ -73,7 +73,7 @@ class _BodyHomePageState extends State<BodyHomePage> {
                       style: txtwelcome,
                     ),
                     const Text(
-                      'Blue Bear',
+                      'SOS',
                       style: txthomestitle,
                     ),
                     SizedBox(

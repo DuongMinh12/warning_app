@@ -58,23 +58,44 @@
 // }
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:warning_app/models/customer_model.dart';
  class TestPage extends StatefulWidget {
    const TestPage({Key? key}) : super(key: key);
  static String routeName = 'testPage';
-   @override
-   State<TestPage> createState() => _TestPageState();
- }
 
- class _TestPageState extends State<TestPage> {
+  @override
+  State<TestPage> createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
    @override
    Widget build(BuildContext context) {
+    Customer customer;
      return Scaffold(
+       appBar: AppBar(
+         leading: IconButton(onPressed: (){
+           ZoomDrawer.of(context)!.open();
+         }, icon: Icon(Icons.arrow_back_ios_new_rounded),),
+       ),
        body: Container(
-         color: Colors.blue,
+         alignment: Alignment.center,
+         color: Colors.white,
+         child: Column(
+           children: [
+             //Text(Customer.fromSnapshot().name),
+             // Text(email!),
+             //  Image.network(imageUrl),
+             // Text('${phone}'),
+
+           ],
+         ),
        ),
      );
    }
- }
+}
 
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:warning_app/constants/add_all.dart';
 import 'package:lottie/lottie.dart';
 import 'package:warning_app/screens/screens.dart';
+import 'package:warning_app/services/splash_services.dart';
 
 import '../home/components/drawer_menu_main_page.dart';
 
@@ -15,9 +16,19 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+
+  ///log vào mượt hơn là gọi thẳng funtion
+  SplashService service = SplashService();
+  @override
+  void initState(){
+    super.initState();
+    service.isLogIn(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 4), ()=>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> DrawerMenu())));
+    //isLogIn(context);
+    //Timer(Duration(seconds: 4), ()=>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> DrawerMenu())));
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
