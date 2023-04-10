@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-            'Blue Bear',
+            'SOS App',
             style: TextStyle(
               color: Colors.blue,
               fontSize: 50,

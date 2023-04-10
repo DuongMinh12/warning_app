@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:warning_app/constants/add_all.dart';
 import 'package:warning_app/models/menu_item_model.dart';
+import 'package:warning_app/models/models.dart';
 import 'package:warning_app/screens/screens.dart';
 
 class MenuBody extends StatelessWidget {
@@ -22,12 +23,12 @@ class MenuBody extends StatelessWidget {
             children: [
                 CircleAvatar(
                   radius: 35,
-                  backgroundImage: NetworkImage('https://cdn.myanimelist.net/images/characters/2/477265.jpg'),
+                  backgroundImage: NetworkImage(Customer.user.imageUrl),
                   backgroundColor: Colors.white24,
                 ),
               SizedBox(height: 10,),
               Text(
-                'Cale Henituse',
+                Customer.user.name,
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               SizedBox(height: 5,),

@@ -56,13 +56,11 @@
 //     );
 //   }
 // }
-
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:warning_app/models/customer_model.dart';
+
+import '../constants/add_all.dart';
  class TestPage extends StatefulWidget {
    const TestPage({Key? key}) : super(key: key);
  static String routeName = 'testPage';
@@ -82,15 +80,28 @@ class _TestPageState extends State<TestPage> {
          }, icon: Icon(Icons.arrow_back_ios_new_rounded),),
        ),
        body: Container(
-         alignment: Alignment.center,
-         color: Colors.white,
-         child: Column(
+         //alignment: Alignment.center,
+         //height: 300,
+         width: double.infinity,
+         decoration: BoxDecoration(
+         ),
+         child: Row(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: [
-             //Text(Customer.fromSnapshot().name),
-             // Text(email!),
-             //  Image.network(imageUrl),
-             // Text('${phone}'),
-
+             Container(color: Colors.blue,
+             height: 150, width: 150,),
+             VerticalDivider(thickness: 3,),
+             Container(color: Colors.red,
+               height: 150, width: 150,)
+             // FutureBuilder(
+             //     builder: (context, snap){
+             //   if(snap.connectionState == ConnectionState.done){
+             //     return Text('hjbbjkb');
+             //   }
+             //   else{
+             //     return Center(child: CircularProgressIndicator(),);
+             //   }
+             // })
            ],
          ),
        ),

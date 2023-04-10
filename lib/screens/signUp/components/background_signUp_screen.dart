@@ -6,8 +6,9 @@ import '../../screens.dart';
 
 class BackgroundSignUpPage extends StatelessWidget {
   const BackgroundSignUpPage({
-    super.key,
+    super.key, required this.title,
   });
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class BackgroundSignUpPage extends StatelessWidget {
                   margin: EdgeInsets.only(top: 50),
                   child: Center(
                     child: Text(
-                      'Sign Up',
+                      title,
                       style: txtsignIntitle,
                     ),
                   ),

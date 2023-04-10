@@ -15,14 +15,11 @@ final String light1 = link + 'light-1.png';
 final String light2 = link + 'light-2.png';
 final String facebookicon = link + 'facebook.png';
 final String gmailicon = link + 'gmail.png';
-final String riveAnimation = link + 'rivAnimation.riv';
 final String alerticon = link + '8750-alert.json';
-
-final String linkrive = 'assets/images/rive_icon/';
-
-final String iconrive = linkrive + 'icons.riv';
-final String iconmenurive = linkrive + 'menu_button.riv';
+final String customerSuport = link + '73816-customer-support-animation-helpline.json';
+final String forgotpw = link + '75971-forgot-password.json';
 
 
-
+final String smspngNetword = 'https://cdn-icons-png.flaticon.com/512/2665/2665038.png';
+final String emailNetword = 'https://cdn-icons-png.flaticon.com/512/3062/3062634.png';
 

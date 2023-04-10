@@ -9,6 +9,7 @@ final Map<String, WidgetBuilder> routes = {
   ProfilePage.routeName: (context) => ProfilePage(),
   TestPage.routeName: (context) => TestPage(),
   DrawerMenu.routeName: (context) => DrawerMenu(),
+  ForgotPasswordPage.routeName: (context) => ForgotPasswordPage(),
 
   // PaymentPage.routeName: (context) => PaymentPage(),
   // WithdrawMoneyPage.routeName: (context) => WithdrawMoneyPage(),
