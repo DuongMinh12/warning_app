@@ -56,9 +56,10 @@
 //     );
 //   }
 // }
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:warning_app/models/customer_model.dart';
 
 import '../constants/add_all.dart';
  class TestPage extends StatefulWidget {
@@ -70,9 +71,35 @@ import '../constants/add_all.dart';
 }
 
 class _TestPageState extends State<TestPage> {
+  String? name ='';
+  String? phone ='';
+  String? email = '';
+  String? imageUrl = catNetword;
+
+  Future getData() async{
+    await FirebaseFirestore.instance.collection('User').doc(FirebaseAuth.instance.currentUser!.uid).get().then((value) async{
+      if(value.exists){
+        setState(() {
+          name = value['name'];
+          email = value['email'];
+          phone = value['phone'];
+          imageUrl = value['imageUrl'];
+        });
+        //cus.id = value.data()!['id'];
+      }
+      print(name);
+    });
+  }
+  @override
+  void initState(){
+    super.initState();
+    getData();
+  }
+
    @override
    Widget build(BuildContext context) {
-    Customer customer;
+    // Customer customer;
+     //getData();
      return Scaffold(
        appBar: AppBar(
          leading: IconButton(onPressed: (){
@@ -88,25 +115,34 @@ class _TestPageState extends State<TestPage> {
          child: Row(
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: [
-             Container(color: Colors.blue,
-             height: 150, width: 150,),
-             VerticalDivider(thickness: 3,),
-             Container(color: Colors.red,
-               height: 150, width: 150,)
-             // FutureBuilder(
-             //     builder: (context, snap){
-             //   if(snap.connectionState == ConnectionState.done){
-             //     return Text('hjbbjkb');
-             //   }
-             //   else{
-             //     return Center(child: CircularProgressIndicator(),);
-             //   }
-             // })
+             loginElevateButton(),
+             SizedBox(
+               height: 35,
+                 child: VerticalDivider(thickness: 2,)),
+             loginElevateButton(),
+             SizedBox(
+                 height: 35,
+                 child: VerticalDivider(thickness: 2,)),
+             loginElevateButton(),
            ],
          ),
+
+         // Row(
+         //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         //   children: [
+         //     Container(color: Colors.blue,
+         //     height: 150, width: 150,),
+         //     VerticalDivider(thickness: 3,),
+         //     Container(color: Colors.red,
+         //       height: 150, width: 150,)
+         //   ],
+         // ),
        ),
      );
    }
+  ElevatedButton loginElevateButton(){
+    return ElevatedButton(onPressed: (){}, child: Icon(Icons.face), style: ElevatedButton.styleFrom(backgroundColor: Colors.red),);
+  }
 }
 
 

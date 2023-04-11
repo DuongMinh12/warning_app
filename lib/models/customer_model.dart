@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 import 'package:warning_app/constants/utils.dart';
 
 class Customer {
-  final String? id;
-  final String name;
-  final String email;
-  final String imageUrl;
-  final int phone;
+   String? id;
+   String name;
+   String email;
+   String imageUrl;
+   int phone;
 
   // Customer copyWith({
   //   String? name,

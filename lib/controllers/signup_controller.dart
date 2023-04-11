@@ -14,10 +14,10 @@ void SignUp(BuildContext context, String email, String password, String username
       firestore.collection('User').doc(_uid).set({
         'email' : email,
         'name' : username,
-        'phone' : '132244',
+        'phone' : "213436",
         'imageUrl': '',
         'id' : value.user!.uid.toString(),
-        'timeCreateAcc' : Timestamp.now(),
+        'timeCreateAcc' : DateTime.now(),
       }).then((value) {
         Utils.toassMessage('Create account successfully!');
         Future.delayed(Duration(seconds: 2), () => Navigator.pushNamed(context, DrawerMenu.routeName));

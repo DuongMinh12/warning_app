@@ -19,12 +19,12 @@ class ContactPage extends StatelessWidget {
             ZoomDrawer.of(context)!.open();
           },),
         ),
-        title: Text('Request Help', style: txt20,),
+        title: Center(child: Text('Request Help', style: txt20,)),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             Container(margin: EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 5),
