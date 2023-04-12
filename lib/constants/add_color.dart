@@ -13,3 +13,5 @@ final Color deepblueA80 = Colors.deepPurple.withAlpha(80);
 final Color deepPurpleAccents10 = Colors.deepPurpleAccent.shade100;
 final Color txtpupel = Color(0xFF5E63D4);
 final Color bgcolorlogin = Color(0xFFD6E2EA);
+final Color kPrimaryColor = Color(0xff6a62b7);
+final Color kBackground = Color(0xffe5e5e5);

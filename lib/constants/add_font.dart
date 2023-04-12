@@ -15,3 +15,8 @@ TextStyle txtwelcome = TextStyle(fontSize: 20, fontWeight: FontWeight.w600, colo
 TextStyle txtsignup = TextStyle(color: Colors.grey.shade400, fontWeight: FontWeight.w400,);
 TextStyle txtlogIn = TextStyle(color: Colors.blue, fontWeight: FontWeight.w500, fontSize: 50, fontFamily: 'Alkatra');
 TextStyle txtsignIntitle = TextStyle(fontSize: 42, fontWeight: FontWeight.bold, color: Colors.white, fontFamily: 'Alkatra');
+
+//loginpage new
+TextStyle loginstyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 24);
+TextStyle buttonLoginStyle = TextStyle(fontSize: 18, color: Colors.white);
+TextStyle GestureRegisterStyle = TextStyle(fontSize: 18, color: kPrimaryColor);

@@ -4,6 +4,8 @@ final String link = 'assets/images/';
 final String close = link + 'cross-octagon.svg';
 final String exclamation = link + 'emblem-important.svg';
 final String bearteddy = link + '1486301537.svg';
+final String login = link + 'login.svg';
+final String regis = link + 'register.svg';
 
 //lotties
 final String alerticon = link + '8750-alert.json';

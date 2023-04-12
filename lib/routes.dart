@@ -5,7 +5,7 @@ import 'package:warning_app/screens/screens.dart';
 final Map<String, WidgetBuilder> routes = {
   SplashPage.routeName: (context) => SplashPage(),
   LogInPage.routeName: (context) => LogInPage(),
-  SignUpPage.routeName: (context) => SignUpPage(),
+  // SignUpPage.routeName: (context) => SignUpPage(),
   ProfilePage.routeName: (context) => ProfilePage(),
   TestPage.routeName: (context) => TestPage(),
   DrawerMenu.routeName: (context) => DrawerMenu(),
