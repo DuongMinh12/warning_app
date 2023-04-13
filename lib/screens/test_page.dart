@@ -58,17 +58,36 @@
 // }
 import 'package:flutter/material.dart';
 
+import '../constants/add_color.dart';
+import 'login/components/build_textformfield_login.dart';
+
  class TestPage extends StatelessWidget {
    TestPage({Key? key}) : super(key: key);
   static String routeName = 'testPage';
 
    @override
    Widget build(BuildContext context) {
+     var _passControllersg=TextEditingController();
      return Scaffold(
        appBar: AppBar(),
+       body: Center(
+         child: Column(
+           children: [
+           ],
+         ),
+       ),
      );
    }
+   String? validatorEmailSignUP(String? value){
+     if(value!.isEmpty){
+       return 'Bạn chưa nhập Email';
+     }
+     else{
+       return null;
+     }
+   }
 }
+
 
 
 

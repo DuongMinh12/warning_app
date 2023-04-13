@@ -1,49 +1,128 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:warning_app/controllers/login_controller.dart';
 
 import '../../../constants/add_all.dart';
+import '../../screens.dart';
 import 'components_login.dart';
-class LoginTextfield extends StatelessWidget {
-  const LoginTextfield({
+
+
+class LoginTextfield extends StatefulWidget {
+  LoginTextfield({
     super.key,
   });
+
+  @override
+  State<LoginTextfield> createState() => _LoginTextfieldState();
+}
+
+class _LoginTextfieldState extends State<LoginTextfield> {
+  final _emailController = TextEditingController();
+  final _passController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> _key = GlobalKey<FormState>();
-    Size size = MediaQuery.of(context).size;
+
+    // Size size = MediaQuery.of(context).size;
+
     return Form(
+      key: _formKey,
       child: Column(
         children: [
-          InputContainer(
-            child: TextField(
-              cursorColor: kPrimaryColor,
-              decoration: InputDecoration(
-                  icon: Icon(Icons.email, color: kPrimaryColor,),
-                  hintText: 'Email',
-                  border: InputBorder.none
-              ),
+          BuildTextFormFile(
+            obscureText: false,
+            controller: _emailController,
+            prefixIcon: Icon(
+              Icons.email,
+              color: kPrimaryColor,
+            ),
+            title: 'Email',
+            validator: validatorEmailLogin,
+          ),
+          BuildTextFormFile(
+            obscureText: true,
+            controller: _passController,
+            prefixIcon: Icon(
+              Icons.lock,
+              color: kPrimaryColor,
+            ),
+            title: 'Password',
+            validator: validatorPassLogin,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 45),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                       LogIn(context, _emailController.text, _passController.text);
+                      }
+                    },
+                    child: Text(
+                      'LOGIN',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        //minimumSize: Size(size.width*0.8, 45),
+                      // padding: EdgeInsets.symmetric(horizontal: 10),
+                        backgroundColor: kPrimaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        )),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Icon(Icons.fingerprint),
+                  style: ElevatedButton.styleFrom(backgroundColor: kPrimaryColor),
+                )
+              ],
             ),
           ),
-          InputContainer(
-            child: TextField(
-              cursorColor: kPrimaryColor,
-              decoration: InputDecoration(
-                  icon: Icon(Icons.lock, color: kPrimaryColor,),
-                  hintText: 'Password',
-                  border: InputBorder.none
-              ),
-            ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 45),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('Forgot Password? '),
+                TextButton(onPressed: (){
+                  Navigator.pushNamed(context, ForgotPasswordPage.routeName);
+                }, child: Text('Forgot'),
+                  style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size.zero
+                  ),
+                ),
+              ],),
           ),
-          SizedBox(height: 5,),
-          ElevatedButton(onPressed: (){},child: Text('LOGIN', style: TextStyle(fontSize: 18, color: Colors.white),),
-          style: ElevatedButton.styleFrom(
-            minimumSize: Size(size.width*0.8, 45),
-            backgroundColor: kPrimaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30)
-            )
-          ),)
         ],
       ),
     );
   }
+
+  @override
+  String? validatorEmailLogin(String? v) {
+    if (v!.isEmpty) {
+      return 'Bạn chưa nhập Email';
+    }else{
+      return null;
+    }
+  }
+
+  String? validatorPassLogin(String? v) {
+    if (v!.isEmpty) {
+      return 'Bạn chưa nhập Password';
+    }else{
+      return null;
+    }
+  }
 }
+
+

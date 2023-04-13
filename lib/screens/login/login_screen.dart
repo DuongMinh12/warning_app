@@ -13,49 +13,73 @@ class LogInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    double viewInset = MediaQuery.of(context).viewInsets.bottom;
-    double  defaultLoginSize = size.height - (size.height*0.2);
-    double  defaultRegisterSize = size.height - (size.height*0.1);
+    Size size = Size(400, 780);
     return Scaffold(
       //backgroundColor: kBackground,
-      body: Align(
-        alignment: Alignment.center,
-        child: SingleChildScrollView(
-          child: Container(
-            width: size.width,
-            height: defaultLoginSize,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
               children: [
-                //SizedBox(height: 40,),
-                Text('Welcome Back', style: loginstyle,),
-                SizedBox(height: 40,),
-                SvgPicture.asset(login),
-                SizedBox(height: 20,),
-                LoginTextfield(),
-                SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                  Text('Don\'t have any account?'),
-                    TextButton(onPressed: (){
-                      showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(100),
-                                topLeft: Radius.circular(100)),
-                          ),
-                          backgroundColor: kBackground,
-                          isScrollControlled: true,
-                          context: context, builder: (context){
-                        return SignUpBottomSheetSceen(size: size,);
-                      });
-                    }, child: Text('Register'))
-                ],)
+                Positioned(
+                  top: -20,
+                  left: -50,
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 100,
+                  right: -50,
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: size.width,
+                    height: size.height - (size.height * 0.1),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Text(
+                          'Welcome Back',
+                          style: loginstyle,
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        SvgPicture.asset(login),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        LoginTextfield(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
-          ),
+            SignUpBottomSheetSceen(size: size,),
+          ],
         ),
       ),
     );

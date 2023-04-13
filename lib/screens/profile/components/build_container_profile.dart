@@ -1,35 +1,20 @@
+
 import 'package:flutter/material.dart';
 
 import '../../../constants/add_all.dart';
 
 
-Container buildProfile (BuildContext context, String titleProfile, String inforUsser, Icon iconP5){
+Container buildProfile (String title, IconData icon){
   return Container(
-    padding: EdgeInsets.only(left: 25, right: 25),
-    child: Column(
-      children: [
-        Divider(thickness: 1, height: 3,),
-        ListTile(
-          minLeadingWidth: 10,
-          leading: Container(
-            //margin: EdgeInsets.only(right: 10) ,
-            decoration: BoxDecoration(
-                color: Colors.lightBlueAccent.withAlpha(80),
-                borderRadius: BorderRadius.circular(99)
-            ),
-            height: 38, width: 38,
-            //alignment: Alignment.center,
-            child: iconP5,),
-          title: Text(titleProfile, style: txt16!.copyWith(fontWeight: FontWeight.w600),),
-          subtitle: Padding(
-            padding: const EdgeInsets.only(top: 5 ),
-            child: Text(inforUsser, style: txt15,),
-          ),
-          trailing: IconButton(onPressed: (){
-            dialogEditPro5(context);
-          }, icon: Icon(Icons.edit,),),
-        ),
-      ],
+    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+    child: TextFormField(
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon, color: kPrimaryColor,),
+        label: Text(title),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30)
+        )
+      ),
     ),
   );
 }
@@ -42,31 +27,23 @@ Future<dynamic> dialogEditPro5(BuildContext context) {
           });
 }
 
-
-Padding IDScan( String title, String iconface) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-    child: Column(
-      children: [
-        Divider(thickness: 1, height: 3,),
-        ListTile(
-          leading: Container(
-            //margin: EdgeInsets.only(right: 10) ,
-            decoration: BoxDecoration(
-                color: Colors.lightBlueAccent.withAlpha(80),
-                borderRadius: BorderRadius.circular(99)
-            ),
-            height: 38, width: 38,
-            //alignment: Alignment.center,
-            child:Padding(
-              padding: EdgeInsets.all(4),
-              child: Image.network(iconface),
-            )
-            ),
-          title: Text(title, style: txt16!.copyWith(fontWeight: FontWeight.w600)),
-          trailing: IconButton(onPressed: (){}, icon: Icon(Icons.add_circle),),
-        ),
-      ],
+Widget IDScan( String title, String image, Color color) {
+  return ElevatedButton(onPressed: (){}, child: Row(
+    children: [
+      SizedBox(
+        height: 25,
+        width: 25,
+        child: Image.network(image,),
+      ),
+      SizedBox(width: 8),
+      Text(title)
+    ],
+  ),
+  style: ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30)
     ),
-  );
+    backgroundColor: color,
+    minimumSize: Size(150, 40),
+  ),);
 }

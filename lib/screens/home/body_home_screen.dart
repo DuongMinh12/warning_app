@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -15,6 +17,23 @@ class BodyHomePage extends StatefulWidget {
 }
 
 class _BodyHomePageState extends State<BodyHomePage> {
+  String name ='Unknow';
+
+  Future getData() async{
+    await FirebaseFirestore.instance.collection('User').doc(FirebaseAuth.instance.currentUser!.uid).get().then((value) async{
+      if(value.exists){
+        setState(() {
+          name = value['name'];
+        });
+        //cus.id = value.data()!['id'];
+      }
+    });
+  }
+  @override
+  void initState(){
+    super.initState();
+    getData();
+  }
   ChangeStateModel changeStateModel = ChangeStateModel();
   TextEditingController txt = TextEditingController();
 
@@ -69,7 +88,7 @@ class _BodyHomePageState extends State<BodyHomePage> {
                       height: 10,
                     ),
                     Text(
-                      'Welcome to,',
+                      'Welcome ${name} to,',
                       style: txtwelcome,
                     ),
                     const Text(

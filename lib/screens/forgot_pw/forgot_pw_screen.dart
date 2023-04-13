@@ -59,8 +59,9 @@ class ForgotPasswordPage extends StatelessWidget {
                   child: Text('Reset Password'),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
-                  )
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  backgroundColor: kPrimaryColor
                 ),))
           ],
         )

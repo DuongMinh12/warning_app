@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:intl/intl.dart';
 import 'package:warning_app/constants/add_all.dart';
 import 'package:warning_app/models/models.dart';
 import 'components/component_profile_page.dart';
@@ -17,7 +16,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   String name ='Unknow';
-  String phone ='Unknow';
+  int phone = 0;
   String email = 'Unknow';
   String imageUrl = catNetword;
   Timestamp time = Timestamp.now() ;
@@ -45,6 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(onPressed: (){
@@ -53,66 +53,71 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.white,elevation: 0,
         title: Center(child: Text('Profile', style: txt20!.copyWith(fontWeight: FontWeight.w700),)),
       ),
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          //crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-                padding: const EdgeInsets.only(top: 20.0, bottom: 15),
-                child: Stack(
+      body: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.center,
+          child: Column(
+            //crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 15),
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        radius: 50,
+                        backgroundImage: (imageUrl=='')? NetworkImage(catNetword): NetworkImage(imageUrl!),
+                      ),
+                      Positioned(
+                        right: 5,
+                        bottom: 0,
+                          child: GestureDetector(
+                            onTap: (){ print('ok');},
+                            child: Container(height: 30, width: 30, alignment: Alignment.center,
+                            child: Icon(Icons.add_a_photo_outlined, color: Colors.white, size: 19,),
+                            decoration: BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius: BorderRadius.circular(99)
+                            ),),
+                          )),
+                    ],
+                  )),
+              Text(
+               name!,
+                style: txt18!.copyWith(fontWeight: FontWeight.w700),
+              ),
+              SizedBox(height: 3,),
+              Text(
+                email!,
+                style: txt16!.copyWith(fontWeight: FontWeight.normal),
+              ),
+              SizedBox(height: 20,),
+              buildProfile('User Name', Icons.person),
+              buildProfile('Email', Icons.mail_outline),
+              buildProfile('Phone Number', Icons.phone),
+              SizedBox(height: 20,),
+              ElevatedButton(onPressed: (){
+                print('Save');
+              }, child: Text('Edit Profile'),
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(335, 40),
+                backgroundColor: kPrimaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                )
+              ),),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      radius: 50,
-                      backgroundImage: (imageUrl=='')? NetworkImage(catNetword): NetworkImage(imageUrl!),
-                    ),
-                    Positioned(
-                      right: 5,
-                      bottom: 0,
-                        child: GestureDetector(
-                          onTap: (){ print('ok');},
-                          child: Container(height: 30, width: 30, alignment: Alignment.center,
-                          child: Icon(Icons.add_a_photo_outlined, color: Colors.black, size: 20,),
-                          decoration: BoxDecoration(
-                            color: Colors.lightBlueAccent.shade100,
-                            borderRadius: BorderRadius.circular(99)
-                          ),),
-                        )),
+                    IDScan('Add Touch ID', touchid, Colors.indigoAccent),
+                    IDScan('Add Face ID', faceid, Colors.deepPurpleAccent),
                   ],
-                )),
-            Text(
-             name!,
-              style: txt18!.copyWith(fontWeight: FontWeight.w700),
-            ),
-            SizedBox(height: 3,),
-            Text(
-              email!,
-              style: txt16!.copyWith(fontWeight: FontWeight.normal),
-            ),
-            SizedBox(height: 20,),
-            buildProfile( context,'User Name: ', name!, Icon(Icons.perm_contact_cal, size: 25, color: Colors.black,)),
-            buildProfile( context,'Time create account: ',DateFormat('dd/MM/yyyy').format(DateTime.parse(time!.toDate().toString())).toString() , Icon(Icons.schedule, size: 25,color: Colors.black)),
-            buildProfile( context,'Phone: ', phone!, Icon(Icons.phone, size: 25,color: Colors.black)),
-            IDScan( 'Touch ID', touchidicon),
-            IDScan( 'Face ID', faceid),
-            SizedBox(height: 30,),
-            // Container(
-            //   //alignment: Alignment.center,
-            //  width: 160,
-            //   height: 40,
-            //   child: ElevatedButton(onPressed: (){
-            //
-            //   }, child: Text('Edit Profile', style: txt15,),
-            //     style: ElevatedButton.styleFrom(
-            //         backgroundColor: Colors.lightBlueAccent,
-            //         shape: RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.circular(30)
-            //         )
-            //     ),),
-            // ),
-
-          ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
