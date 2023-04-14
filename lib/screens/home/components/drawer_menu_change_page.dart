@@ -17,7 +17,6 @@ class MenuBody extends StatefulWidget {
 
 class _MenuBodyState extends State<MenuBody> {
   String? name ='Unknow';
-  String? phone ='Unknow';
   String? email = 'Unknow';
   String? imageUrl = catNetword;
 
@@ -27,7 +26,6 @@ class _MenuBodyState extends State<MenuBody> {
         setState(() {
           name = value['name'];
           email = value['email'];
-          phone = value['phone'];
           imageUrl = value['imageUrl'];
         });
         //cus.id = value.data()!['id'];

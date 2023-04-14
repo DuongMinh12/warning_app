@@ -15,15 +15,17 @@ class CustomerRepository extends GetxController {
   //   }).onError((error, stackTrace) {
   //     return Utils.toassMessage(error.toString());
   //   });
+
+
+  Future<Customer> getDataDetail(String email) async {
+    /// sử dụng email để lấy data, khai báo String email trên funtion
+    final snapShot = await _firestore.collection('User').where('email', isEqualTo: email).get();
+    final data = snapShot.docs
+        .map((e) => Customer.fromSnapShot(e))
+        .single;
+    return data;
+  }
 }
-
-// Future<Customer> getDataDetail(String email) async {
-//  /// sử dụng email để lấy data, khai báo String email trên funtion
-//  final snapShot = await _firestore.collection('User').where('email', isEqualTo: email).get();
-//  final dataList = snapShot.docs.map((e) => Customer.fromSnapshot(e)).single;
-//  return dataList;
-//}
-
   // Future<Customer> getdataFromDatabase() async {
   //   ///kết nối với User firestore, lần theo từng uid để lấy data, tự chế :)))
   //   final snapShot = await _firestore.collection('User').doc(FirebaseAuth.instance.currentUser!.uid).get().then((value) => Customer.fromSnapshot(value));

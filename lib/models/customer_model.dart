@@ -7,12 +7,12 @@ import 'package:warning_app/constants/utils.dart';
 
 class Customer {
   String? id;
-  String name;
-  String email;
-  String imageUrl;
-  int phone;
+  String? name;
+  String? email;
+  String? imageUrl;
+  int? phone;
 
-  Customer({required this.name, required this.email, required this.imageUrl, required this.phone, this.id});
+  Customer({ this.name,  this.email, this.imageUrl, this.phone, this.id});
   @override
   List<Object?> get props {
     return [name, imageUrl, email, phone];
