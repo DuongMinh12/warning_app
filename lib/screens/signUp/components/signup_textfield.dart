@@ -21,7 +21,14 @@ class _SignUpTextfieldState extends State<SignUpTextfield> {
   TextEditingController _usernameControllersg =TextEditingController();
   TextEditingController _emailControllersg =TextEditingController();
   TextEditingController _passControllersg =TextEditingController();
-  TextEditingController _phoneControllersg =TextEditingController();
+  // TextEditingController _phoneControllersg =TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    RegisterWithApi(context, _usernameControllersg.text, _emailControllersg.text, _passControllersg.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -29,7 +36,8 @@ class _SignUpTextfieldState extends State<SignUpTextfield> {
       child: Column(
         children: [
           BuildTextFormFile(
-            obscureText: false,
+            isPass: false,
+            // obscureText: false,
             controller: _usernameControllersg,
             prefixIcon: Icon(
               Icons.person,
@@ -39,7 +47,8 @@ class _SignUpTextfieldState extends State<SignUpTextfield> {
             validator: validatorUsernamSignUP,
           ),
           BuildTextFormFile(
-            obscureText: false,
+            isPass: false,
+            // obscureText: false,
             controller: _emailControllersg,
             prefixIcon: Icon(
               Icons.email,
@@ -49,17 +58,8 @@ class _SignUpTextfieldState extends State<SignUpTextfield> {
             validator: validatorEmailSignUP,
           ),
           BuildTextFormFile(
-            obscureText: false,
-            controller: _phoneControllersg,
-            prefixIcon: Icon(
-              Icons.phone,
-              color: kPrimaryColor,
-            ),
-            title: 'Phone Number',
-            validator: validatorPassSignUP,
-          ),
-          BuildTextFormFile(
-            obscureText: true,
+            isPass: true,
+            // obscureText: true,
             controller: _passControllersg,
             prefixIcon: Icon(
               Icons.lock,
@@ -71,7 +71,7 @@ class _SignUpTextfieldState extends State<SignUpTextfield> {
           SizedBox(height: 5,),
           ElevatedButton(onPressed: (){
             if(_key.currentState!.validate()){
-              SignUp(context, _usernameControllersg.text, _emailControllersg.text, _phoneControllersg.hashCode, _passControllersg.text);
+              RegisterWithApi(context, _usernameControllersg.text.toString(), _emailControllersg.text.toString(), _passControllersg.text.toString());
             }
           },child: Text('SIGN UP', style: TextStyle(fontSize: 18, color: Colors.white),),
             style: ElevatedButton.styleFrom(

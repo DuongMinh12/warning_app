@@ -20,6 +20,11 @@ class _LoginTextfieldState extends State<LoginTextfield> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    LoginWithApi(context, _emailController.text, _passController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,8 @@ class _LoginTextfieldState extends State<LoginTextfield> {
       child: Column(
         children: [
           BuildTextFormFile(
-            obscureText: false,
+            isPass: false,
+            // obscureText: false,
             controller: _emailController,
             prefixIcon: Icon(
               Icons.email,
@@ -41,7 +47,8 @@ class _LoginTextfieldState extends State<LoginTextfield> {
             validator: validatorEmailLogin,
           ),
           BuildTextFormFile(
-            obscureText: true,
+            isPass: true,
+            // obscureText: true,
             controller: _passController,
             prefixIcon: Icon(
               Icons.lock,
@@ -59,7 +66,7 @@ class _LoginTextfieldState extends State<LoginTextfield> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                       LogIn(context, _emailController.text, _passController.text);
+                        LoginWithApi(context, _emailController.text, _passController.text);
                       }
                     },
                     child: Text(

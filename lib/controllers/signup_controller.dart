@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:warning_app/constants/utils.dart';
+import '../constants/add_all.dart';
 import '../screens/screens.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -45,6 +47,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
     }
     ;
   }
+
+void RegisterWithApi(BuildContext context, String name, String email, String password) async{
+  var dio = Dio();
+  try{
+    var response = await dio.post(urlapiregister, data: {
+      'email': email,
+      'password': password,
+      'name': name,
+    });
+    if(response.statusCode==201){
+      Utils.toassMessage(response.data['msg']);
+      Future.delayed(Duration(seconds: 3),()=> Navigator.pushNamed(context, DrawerMenu.routeName));
+    }else{
+      print('not 201 state');
+      print(response.statusCode);
+      print(response.statusMessage);
+    }
+    // Utils.toassMessage(response.data['msg']);
+    // Future.delayed(Duration(seconds: 3),()=> Navigator.pushNamed(context, DrawerMenu.routeName));
+  }catch(e){
+    print('register error');
+    print(e.toString());
+  };
+}
 
 
 

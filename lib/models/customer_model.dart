@@ -1,9 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
-import 'package:warning_app/constants/utils.dart';
+import '../constants/add_all.dart';
 
 class Customer {
   String? id;
@@ -72,3 +68,35 @@ class Customer {
 
   static Customer user = Customer(name: "Cale", email: 'cale@gmail.com', imageUrl: 'https://cdn.myanimelist.net/images/characters/2/477265.jpg', phone: 123456);
 }
+
+
+class User {
+  String? name = 'Unknow';
+  int? phone = 0;
+  String? email = 'Unknow';
+  // String? password;
+  String? avatar = catNetword;
+
+  User({this.name, this.email, this.phone, this.avatar});
+
+  User.fromJson(Map<String, dynamic> json) {
+    name = json['username'];
+    phone = json['phone'];
+    email = json['email'];
+    // password = json['password'];
+    avatar = json['avatar'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['username'] = this.name;
+    data['phone'] = this.phone;
+    data['email'] = this.email;
+    // data['password'] = this.password;
+    data['avatar'] = this.avatar;
+    return data;
+  }
+}
+
+
+

@@ -18,17 +18,23 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
 
   ///log vào mượt hơn là gọi thẳng funtion
-  SplashService service = SplashService();
+  // SplashService service = SplashService();
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   service.isLogIn(context);
+  // }
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    service.isLogIn(context);
+    Future.delayed(Duration(seconds: 4), ()=> Navigator.pushNamed(context, LogInPage.routeName));
   }
 
   @override
   Widget build(BuildContext context) {
     //isLogIn(context);
-    //Timer(Duration(seconds: 4), ()=>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> DrawerMenu())));
+    // Timer(Duration(seconds: 4), ()=>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> DrawerMenu())));
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),

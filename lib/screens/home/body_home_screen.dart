@@ -34,7 +34,6 @@ class _BodyHomePageState extends State<BodyHomePage> {
     super.initState();
     getData();
   }
-  ChangeStateModel changeStateModel = ChangeStateModel();
   TextEditingController txt = TextEditingController();
 
   List datahome = [

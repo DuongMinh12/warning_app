@@ -22,10 +22,9 @@ final String touchid = 'https://cdn-icons-png.flaticon.com/512/8290/8290860.png'
 final String faceid = 'https://cdn-icons-png.flaticon.com/512/3562/3562336.png';
 final String touchidicon = 'https://cdn-icons-png.flaticon.com/512/890/890122.png';
 final String faceidicon = 'https://cdn-icons-png.flaticon.com/512/10276/10276470.png';
-
+final String catNetword = 'https://d1hjkbq40fs2x4.cloudfront.net/2016-07-16/files/cat-sample_1313.jpg';
 
 // jpg/png
-final String catNetword = 'https://d1hjkbq40fs2x4.cloudfront.net/2016-07-16/files/cat-sample_1313.jpg';
 final String fingerprint = link + 'fingerprint.png';
 final String facebookicon = link + 'facebook.png';
 final String gmailicon = link + 'gmail.png';
